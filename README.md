@@ -3,7 +3,7 @@
 
 
 <p align="center">
-  <img src="/imgs/logo.png">
+  <img src="imgs/logo.png">
 </p>
 
 # :computer: Main window
@@ -24,6 +24,7 @@
 | HTTP                 | URL        | HTTP Flood is a type of Distributed Denial of Service (DDoS) attack in which the attacker manipulates HTTP and POST unwanted requests in order to attack a web server or application. These attacks often use interconnected computers that have been taken over with the aid of malware such as Trojan Horses. |
 | Slowloris            | IP:PORT    | Slowloris is a denial-of-service attack program which allows an attacker to overwhelm a targeted server by opening and maintaining many simultaneous HTTP connections between the attacker and the target. |
 | Memcached            | IP:PORT    | A memcached distributed denial-of-service (DDoS) attack is a type of cyber attack in which an attacker attempts to overload a targeted victim with internet traffic. The attacker spoofs requests to a vulnerable UDP memcached* server, which then floods a targeted victim with internet traffic, potentially overwhelming the victim’s resources. While the target’s internet infrastructure is overloaded, new requests cannot be processed and regular traffic is unable to access the internet resource, resulting in denial-of-service. |
+| CUSTOM             | URL    | Similar to HTTP method, but you can pass cookies and a specific user-agent as parameters with the flags `--cookies` and `--user-agent`, make sure to encapsulate the values in quotes. |
 
 # :gift: Installation:
 * Windows:

