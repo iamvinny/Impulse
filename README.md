@@ -3,12 +3,12 @@
 
 
 <p align="center">
-  <img src="https://i.ibb.co/rFct6QX/LOGO.png">
+  <img src="/imgs/logo.png">
 </p>
 
 # :computer: Main window
 <p align="center">
-  <img src="/imgs/logo.png">
+  <img src="https://i.ibb.co/8c1fb1Q/Impulse-Main.png">
 </p>
 
 # :satellite: Methods:
