@@ -8,7 +8,7 @@
 
 # :computer: Main window
 <p align="center">
-  <img src="https://i.ibb.co/8c1fb1Q/Impulse-Main.png">
+  <img src="/imgs/logo.png">
 </p>
 
 # :satellite: Methods:
