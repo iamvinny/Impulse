@@ -9,4 +9,5 @@ print(rf"""{Fore.MAGENTA}
 /\/ /_ | | | | | | |_) | |_| | \__ \  __/
 \____/ |_| |_| |_| .__/ \__,_|_|___/\___|
                  |_|    Created by LimerBoy
+                        {Fore.GREEN}Modified by Vinny{Fore.RESET}
 {Fore.RESET}""")
